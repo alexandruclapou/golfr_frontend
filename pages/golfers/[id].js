@@ -1,6 +1,6 @@
 import Layout from '../../components/Layout'
 import { useRouter } from 'next/router'
-import useUserScores from '../../lib/useUserScores'
+import useUserScores from '../../lib/useUserScores.js'
 import ScoreCard from '../../components/ScoreCard'
 
 export default function Golfer() {
@@ -27,6 +27,7 @@ export default function Golfer() {
                 playedAt={score.played_at}
                 userId={userId}
                 userName={name}
+                gotoGolfer={false}
               />
             ))}{' '}
         </>
