@@ -2,13 +2,13 @@ import Layout from '../../components/Layout'
 import { useRouter } from 'next/router'
 import useUserScores from '../../lib/useUserScores.js'
 import ScoreCard from '../../components/ScoreCard'
+import useUser from '../../lib/useUser'
 
 export default function Golfer() {
   const router = useRouter()
   const userId = router.query.id
-  const { userScores, error } = useUserScores(userId)
-  const name = userScores ? userScores.user.name : ''
-  const scores = userScores ? userScores.user_scores : []
+  const { scores, error } = useUserScores(userId)
+  const { user, errorr } = useUser(userId)
   return (
     <Layout>
       {error ? (
@@ -17,8 +17,8 @@ export default function Golfer() {
         </>
       ) : (
         <>
-          <p className="tracking-widest">{name}</p>
-          {scores &&
+          <p className="tracking-widest">{user ? user.name : ''}</p>
+          {scores && user &&
             scores.map(score => (
               <ScoreCard
                 key={score.id}
@@ -26,7 +26,7 @@ export default function Golfer() {
                 totalScore={score.total_score}
                 playedAt={score.played_at}
                 userId={userId}
-                userName={name}
+                userName={user.name}
                 gotoGolfer={false}
               />
             ))}{' '}

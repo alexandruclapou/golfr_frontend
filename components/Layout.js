@@ -19,7 +19,9 @@ const Layout = ({ children }) => {
         </span>
         <span className="h-8 items-center t ext-xl ml-auto">
           <Link href={`/golfers/${userId}`}>
-            {username}
+            <a>
+              {username}
+            </a>
           </Link>
           <span className="text-sm">
             {' ('}
